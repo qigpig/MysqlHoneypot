@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>show hacker info</title>
+    <meta charset="utf-8">
+    <link href="static/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+<!--    <link href="static/css/Content/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />-->
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                            <tr class="text-center">
+                                <th>IP</th>
+                                <th>Wechat Id</th>
+                                <th>QR Code</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="text-center">
+                                    <td>1</td>
+                                    <td><input name="wechatId" value="1" type="hidden">1</td>
+                                    <td id="qrcode"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% block js %}
+<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+<script type="text/javascript" src="static/js/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="static/js/popper.min.js"></script>
+<script type="text/javascript" src="static/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="static/js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="static/js/qrcode.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#sampleTable tbody>tr").click(function() {
+            var trSeq = $(this).parent().find("tr").index($(this)[0]); //所获取的当前行的行号
+            //var input_val=$(this).find("input[name='number']").val();
+            var getid = $("#sampleTable tbody>tr").eq(trSeq).find("input[name='wechatId']").val();
+            var src = "weixin://contacts/profile/" + getid; //拼接
+            // // 生成二维码链接
+            $("#qrcode").html(''); //将之前生成的二维码清空
+            new QRCode(document.getElementById("qrcode"), src);
+        });
+    });
+</script>
+{% endblock %}
+
+</html>
