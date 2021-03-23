@@ -11,7 +11,7 @@ users = {
 }
 
 def getHackerInfo():
-    exp_path = os.path.abspath('.') + "\\log"
+    exp_path = os.path.abspath('.') + os.sep + "log"
     direxp = []
     for root,dirs,filenames in os.walk(exp_path):
         for filename in filenames:
@@ -31,7 +31,7 @@ def view_index():
     infoList = []
     dataPath = getHackerInfo()
     for data in dataPath:
-        ip = data.split('\\')[-2]
+        ip = data.split(os.sep)[-2]
         infoList.append(ip)
         with open(data,'rb')as f:
             content = f.read().replace('\n','').replace('\r','').replace(' ','').replace('\t','').replace('\00','')
