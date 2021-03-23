@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+# 请自行更改密码
 users = {
     "admin": generate_password_hash("gu+gugu")
 }

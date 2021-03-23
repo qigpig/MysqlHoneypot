@@ -8,7 +8,15 @@ Use MySQL honeypot to get wechat ID
 * ~~前端有点bug，不管了，能用就行了~~
 
 # Dokcer 部署
-克隆本项目,并且在本项目下面执行
+1. 克隆本项目, 修改密码 MysqlHoneypot\webServer.py
+```python
+# 请自行更改密码
+users = {
+    "admin": generate_password_hash("密码")
+}
+```
+
+2. 在本项目下面执行
 ```bash
 docker-compose up -d
 ```
