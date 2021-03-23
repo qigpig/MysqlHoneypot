@@ -3,7 +3,7 @@ from webServer import app
 from multiprocessing import Pool
 
 def web_server():
-    app.run()
+    app.run(host="0.0.0.0")
 
 def eval_server():
     evalServer.run()
